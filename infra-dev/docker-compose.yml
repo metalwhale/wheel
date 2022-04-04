@@ -1,0 +1,15 @@
+version: "3"
+services:
+  client:
+    build:
+      context: ../client/
+      dockerfile: ${PWD}/client/Dockerfile
+    environment:
+      - CLIENT_INTERVAL=${CLIENT_INTERVAL}
+      - CLIENT_TIME_FRAME=${CLIENT_TIME_FRAME}
+      - CLIENT_PAIR=${CLIENT_PAIR}
+      - CLIENT_LIMIT=${CLIENT_LIMIT}
+    volumes:
+      - ../:/usr/src/wheel
+    tty: true
+    working_dir: /usr/src/wheel/client
