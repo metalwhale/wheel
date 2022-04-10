@@ -9,7 +9,21 @@ services:
       - CLIENT_TIME_FRAME=${CLIENT_TIME_FRAME}
       - CLIENT_PAIR=${CLIENT_PAIR}
       - CLIENT_LIMIT=${CLIENT_LIMIT}
+      - LOGGER_HOSTNAME=logger
+      - LOGGER_PORT=${LOGGER_PORT}
     volumes:
       - ../:/usr/src/wheel
     tty: true
     working_dir: /usr/src/wheel/client
+  logger:
+    build:
+      context: ../logger/
+      dockerfile: ${PWD}/logger/Dockerfile
+    environment:
+      - LOGGER_PORT=${LOGGER_PORT}
+    expose:
+      - ${LOGGER_PORT}
+    volumes:
+      - ../:/usr/src/wheel
+    tty: true
+    working_dir: /usr/src/wheel/logger

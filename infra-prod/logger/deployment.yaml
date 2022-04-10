@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: logger-deployment
 spec:
   selector:
     matchLabels:
-      app: client
+      app: logger
   template:
     metadata:
       labels:
-        app: client
+        app: logger
     spec:
       containers:
-      - name: client
-        image: wheel/client:0.1.0
-        command: ["wheel-client"]
+      - name: logger
+        image: wheel/logger:0.1.0
+        command: ["wheel-logger"]
         envFrom:
         - configMapRef:
-            name: client-config
+            name: logger-config
